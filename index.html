@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;   
+            margin: 0;
+            padding: 0;
+            color: white; 
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        /* Container for the top section (logo, navbar, hamburger) */
+        .top-container {
+            position: relative;
+            padding: 60px;
+            border-bottom: 2px solid red; /* Visual separator */
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: auto;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 45px; /* Adjusted top position */
+            right: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center; /* Vertically center the buttons */
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px 25px;
+            background-color: #333;
+            border-radius: 30px;
+            transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap;
+        }
+
+        .navbar a:hover {
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        /* Dropdown menu for Services */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            border-radius: 15px;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1e90ff;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px 10px;
+            gap: 8px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+        }
+
+        @media (max-width: 1000px) {
+            .navbar {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background-color: #333;
+                border-radius: 15px;
+                padding: 15px;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            .navbar.active {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Container for the content of the index page */
+        .content-container {
+            padding: 20px;
+        }
+
+        /* New Styles for Added Sections */
+        .hero, .about, .services, .portfolio, .contact, footer {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hero {
+            background-color: #1e1e1e;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            background-color: #1e90ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+        }
+
+        .services .service {
+            margin: 20px 0;
+        }
+
+        .portfolio .project {
+            margin: 20px 0;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .contact input, .contact textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .contact button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 20px;
+        }
+
+        .footer-links, .social-icons {
+            margin-top: 10px;
+        }
+
+        .footer-links a, .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container for the top section (logo, navbar, hamburger) -->
+    <div class="top-container">
+        <!-- Logo with Link to Home -->
+        <a href="#" class="logo">
+            <img src="AL.png" alt="logo">
+        </a>
+
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onmouseover="openNavbar()" onmouseout="closeNavbar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="navbar" id="navbar" onmouseover="openNavbar()" onmouseout="closeNavbar()">
+            <!-- Services Dropdown -->
+            <div class="dropdown">
+                <a href="#">Services</a>
+                <div class="dropdown-content">
+                    <a href="#">Web Development</a>
+                    <a href="#">Data Analytics</a>
+                    <a href="#">Database Maintenance</a>
+                </div>
+            </div>
+
+            <!-- About Dropdown -->
+            <div class="dropdown">
+                <a href="#">About</a>
+                <div class="dropdown-content">
+                    <a href="CV_Andres_Lillo.pdf">Curriculum</a>
+                </div>
+            </div>
+
+            <!-- Academic Life Button -->
+            <a href="path-to-your-qualifications.pdf">Academic Life</a>
+        </div>
+    </div>
+
+    <!-- Container for the content of the index page -->
+    <div class="content-container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to My Website</h1>
+            <p>Your one-stop solution for web development, data analytics, and database maintenance.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>About Me</h2>
+            <p>I am a passionate web developer and data analyst with years of experience in creating modern, responsive websites and analyzing complex datasets.</p>
+            <img src="about-image.jpg" alt="About Me">
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <h2>My Services</h2>
+            <div class="service">
+                <h3>Web Development</h3>
+                <p>I create modern, responsive, and user-friendly websites tailored to your needs.</p>
+            </div>
+            <div class="service">
+                <h3>Data Analytics</h3>
+                <p>I analyze data to provide actionable insights and help you make informed decisions.</p>
+            </div>
+            <div class="service">
+                <h3>Database Maintenance</h3>
+                <p>I ensure your databases are optimized, secure, and running smoothly.</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio">
+            <h2>My Portfolio</h2>
+            <div class="project">
+                <img src="project1.jpg" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>A responsive website built for a local business.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="project">
+                <img src="project2.jpg" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>A data visualization dashboard for a startup.</p>
+                <a href="#">View Project</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p>Email: example@example.com</p>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 My Website. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+                <a href="#"><img src="github-icon.png" alt="GitHub"></a>
+                <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function openNavbar() {
+            const navbar = document.getElementById("navbar");
+            navbar.classList.add("active");
+        }
+
+        function closeNavbar() {
+            const navbar = document.getElementById("navbar");
+            navbar.classList.remove("active");
+        }
+    </script>
+</body>
+</html>
